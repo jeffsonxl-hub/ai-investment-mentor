@@ -1,11 +1,17 @@
 # ai-investment-mentor
 
-AI-powered investment mentoring application.
+AI-powered investment mentoring system.
 
-## Getting Started
+## Project Structure
 
-*Coming soon*
+``
+docs/
+  architecture/   System architecture & design
+  agents/         AI agent specifications
+  adr/            Architecture Decision Records
+  tasks/          Task tracking
+``
 
-## Tech Stack
+## Status
 
-*TBD*
+**Phase:** Planning & Documentation
