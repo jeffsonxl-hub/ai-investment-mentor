@@ -30,8 +30,8 @@ class Config:
 
     # LLM
     llm_api_key: str
-    llm_base_url: str = "https://api.openai.com/v1"
-    llm_model: str = "gpt-4o"
+    llm_base_url: str = "https://api.deepseek.com/v1"
+    llm_model: str = "deepseek-v4-pro"
     llm_timeout_seconds: int = 60
     llm_max_retries: int = 2
 
@@ -77,9 +77,9 @@ All configuration maps to environment variables documented in `.env.example`:
 
 ```bash
 # LLM
-LLM_API_KEY=           # Required: OpenAI-compatible API key
-LLM_BASE_URL=https://api.openai.com/v1
-LLM_MODEL=gpt-4o
+LLM_API_KEY=           # Required: DeepSeek API (OpenAI-compatible) key
+LLM_BASE_URL=https://api.deepseek.com/v1
+LLM_MODEL=deepseek-v4-pro
 LLM_TIMEOUT_SECONDS=60
 LLM_MAX_RETRIES=2
 
@@ -129,3 +129,4 @@ DAILY_ANALYSIS_TIME=08:30
 - **V2: Configuration file support.** Allow `config.yaml` as an alternative to environment variables for complex settings (scoring weights, agent-specific thresholds)
 - **V2: Hot reload.** Allow non-critical settings to be updated without restart (log level, scoring weights)
 - **V2: Profile support.** Allow multiple config profiles (conservative/aggressive) selectable at startup
+

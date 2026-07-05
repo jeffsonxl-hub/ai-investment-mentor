@@ -48,7 +48,7 @@ Watchlist Agent ©¤©à©¤©¤? Advisor Agent ©¤©¤? User (Morning Report)
 - `docs/architecture/02-system-overview.md` ¡ª Architecture layers, data flow, Mermaid diagrams
 - `docs/architecture/03-agent-design.md` ¡ª All four Agent specifications using the standard template
 - `docs/architecture/04-decision-flow.md` ¡ª 7-step decision flow with Mermaid diagrams
-- `docs/05-memory-design.md` ¡ª Memory architecture: three types, SQLite schema, access patterns
+- `docs/architecture/05-memory-design.md` ¡ª Memory architecture: three types, SQLite schema, access patterns
 
 ### Decisions
 - `adr/ADR-001-system-philosophy.md` ¡ª Why Advisor-centric architecture
@@ -73,6 +73,8 @@ Read these in order:
 ## Technology (V1)
 - Python 3.11+
 - SQLite for all persistence
-- OpenAI-compatible API for LLM calls
+- DeepSeek API (OpenAI-compatible) for LLM calls
 - AkShare / TuShare for A-share market data
 - LangGraph in Phase 12+ (not yet)
+
+

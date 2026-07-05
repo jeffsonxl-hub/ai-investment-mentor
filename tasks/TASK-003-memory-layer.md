@@ -4,7 +4,7 @@
 This task implements the MemoryRepository Component and the SQLite database schema defined in the memory design. It is the second Codex implementation task, following TASK-001 (Project Bootstrap).
 
 **Required reading (in order):**
-1. `docs/05-memory-design.md` ！ full memory architecture, all three schemas
+1. `docs/architecture/05-memory-design.md` ！ full memory architecture, all three schemas
 2. `components/memory-repository.md` ！ Component spec with full public interface
 3. `adr/ADR-003-memory-strategy.md` ！ why hybrid + SQLite
 4. `adr/ADR-002-agent-responsibilities.md` ！ data access boundaries
@@ -57,7 +57,7 @@ Implement every method listed in the Component Spec Public Interface:
 
 1. `pytest tests/test_memory_repository.py` ！ all tests pass
 2. `memory_repository.initialize()` creates the database file at the configured path
-3. All three table schemas match `docs/05-memory-design.md` exactly
+3. All three table schemas match `docs/architecture/05-memory-design.md` exactly
 4. No method accepts or returns raw SQL ！ all data is dicts and lists
 5. `MemoryRepository.__init__()` does not open a database connection (lazy connection)
 6. `MemoryRepository` has no imports from `openai`, `langgraph`, or any LLM-related package
@@ -72,7 +72,9 @@ Implement every method listed in the Component Spec Public Interface:
 - Data seeding or migration from JSON files
 
 ## References
-- `docs/05-memory-design.md` ！ Schema definitions and access patterns
+- `docs/architecture/05-memory-design.md` ！ Schema definitions and access patterns
 - `components/memory-repository.md` ！ Full public interface specification
 - `adr/ADR-003-memory-strategy.md` ！ Why hybrid + SQLite
 - `PROJECT_RULES.md` ！ Section 4 (Component Template) and Section 6 (TASK Standard)
+
+

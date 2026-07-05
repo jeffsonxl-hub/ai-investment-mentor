@@ -28,7 +28,7 @@
 
 | Phase | Status | Focus |
 |-------|--------|-------|
-| Phase 4 | ?? Planned | System Architecture ！ Agent, Memory, Tool, Workflow; V1 architecture diagram |
+| Phase 4 | [docs](docs/architecture/06-orchestrator-design.md) | ? Designed | System Architecture ！ DAG orchestrator, dependency injection, severity model ！ Agent, Memory, Tool, Workflow; V1 architecture diagram |
 | Phase 5 | ?? Planned | Data Layer Design ！ AkShare, TuShare, news, announcements, database |
 | Phase 6 | ?? Planned | Tool Design ！ Tool vs Agent vs Memory boundary; why MCP exists |
 | Phase 7 | ?? Planned | Project Planning ！ directory structure, dev standards, prompt standards, git workflow, Codex collaboration |
@@ -85,7 +85,7 @@ Why divide responsibilities across agents. Each agent owns a clear domain, reduc
 The core of the course. Design the step-by-step process AI uses to go from the full market down to a final recommendation. No code ！ pure decision flow.
 
 ### Phase 3 ！ Memory Layer ?
-Hybrid memory strategy with SQLite persistence. Three memory types: Watchlist, Market, Decision. MemoryRepository component (no LLM, no business logic). Deliverables: [ADR-003](adr/ADR-003-memory-strategy.md), [design doc](docs/05-memory-design.md), [component spec](components/memory-repository.md), [TASK-003](tasks/TASK-003-memory-layer.md).
+Hybrid memory strategy with SQLite persistence. Three memory types: Watchlist, Market, Decision. MemoryRepository component (no LLM, no business logic). Deliverables: [ADR-003](adr/ADR-003-memory-strategy.md), [design doc](docs/architecture/05-memory-design.md), [component spec](components/memory-repository.md), [TASK-003](tasks/TASK-003-memory-layer.md).
 
 ### Phase 4 ！ System Architecture
 Design the full system: Agent, Memory, Tool, and Workflow layers. Produce the first system architecture diagram.
@@ -125,3 +125,5 @@ The system stops just recommending stocks and starts explaining why. Every stock
 
 ### Phase 16 ！ Evolution
 The system learns. If a stock-picking pattern underperforms over a month, scores auto-adjust. Feedback loop, evaluation, prompt versioning, continuous optimization ！ the assistant adapts to your investment style.
+
+

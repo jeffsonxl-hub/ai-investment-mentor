@@ -22,7 +22,7 @@ Create the project skeleton: directory structure, dependency management, configu
 - [ ] Create `src/` directory with an `__init__.py` and a `main.py` entry point
 - [ ] Create `tests/` directory with `__init__.py` and a placeholder test
 - [ ] Set up Python dependency management with `requirements.txt` or `pyproject.toml`
-- [ ] Add dependencies: `openai` (or `httpx` for OpenAI-compatible API), `pytest`, `python-dotenv`
+- [ ] Add dependencies: `openai` (or `httpx` for DeepSeek API (OpenAI-compatible)), `pytest`, `python-dotenv`
 - [ ] Create a `.env.example` file documenting all required environment variables
 - [ ] Create a `src/config.py` module that loads configuration from environment variables with sensible defaults
 - [ ] `main.py` should, on execution, print the project name, version, and confirm that config loaded successfully
@@ -50,3 +50,4 @@ Create the project skeleton: directory structure, dependency management, configu
 - `PROJECT_RULES.md` ¡ª Section 7 (Directory Structure) and Section 6 (TASK Standard)
 - `adr/ADR-001-system-philosophy.md` ¡ª Advisor-centric architecture
 - `adr/ADR-002-agent-responsibilities.md` ¡ª Data access boundaries
+

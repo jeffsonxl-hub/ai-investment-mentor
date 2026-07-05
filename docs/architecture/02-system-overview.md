@@ -195,7 +195,8 @@ All configuration is externalized. No secrets, API keys, or environment-specific
 |---|---|---|
 | Language | Python 3.11+ | LangGraph ecosystem, AkShare/TuShare support, rapid prototyping |
 | Database | SQLite (via aiosqlite or sqlite3) | Zero-config, single-user, embedded ¡ª perfect for a personal tool |
-| LLM Provider | OpenAI-compatible API | Model-agnostic: works with GPT, Claude, or local models |
+| LLM Provider | DeepSeek API (OpenAI-compatible) | Model-agnostic: works with GPT, Claude, or local models |
 | Data | AkShare (primary), TuShare (fallback) | Free, active maintenance, A-share coverage |
 | Orchestration | Python native (V1), LangGraph (V2, Phase 12+) | Start simple, adopt framework when complexity demands it |
 | Logging | Python `logging` with structured output (JSON Lines) | Debuggable, machine-parseable, standard library |
+
