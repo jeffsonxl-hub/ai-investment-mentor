@@ -18,7 +18,7 @@
 |-------|--------|-------|
 | [Phase 1](docs/architecture/03-agent-design.md) | ? Complete | Agent Design ！ why agents divide responsibilities |
 | [Phase 2](docs/architecture/04-decision-flow.md) | ? Complete | Decision Flow ！ AI narrows from whole market to final recommendation |
-| Phase 3 | ?? Planned | Memory Thinking ！ why agents need memory, memory types, intro to RAG |
+| Phase 3 | [TASK-003](tasks/TASK-003-memory-layer.md) | ? Complete | Memory Layer ！ SQLite persistence, three memory types, hybrid strategy |
 
 **Deliverable:** V1 Agent Design Document, complete decision flow.
 
@@ -84,8 +84,8 @@ Why divide responsibilities across agents. Each agent owns a clear domain, reduc
 ### Phase 2 ！ Decision Flow Design ?
 The core of the course. Design the step-by-step process AI uses to go from the full market down to a final recommendation. No code ！ pure decision flow.
 
-### Phase 3 ！ Memory Thinking
-Why agents need memory, the types of memory (short-term, long-term, episodic, semantic), and how RAG fits in. No implementation yet ！ understanding first.
+### Phase 3 ！ Memory Layer ?
+Hybrid memory strategy with SQLite persistence. Three memory types: Watchlist, Market, Decision. MemoryRepository component (no LLM, no business logic). Deliverables: [ADR-003](adr/ADR-003-memory-strategy.md), [design doc](docs/05-memory-design.md), [component spec](components/memory-repository.md), [TASK-003](tasks/TASK-003-memory-layer.md).
 
 ### Phase 4 ！ System Architecture
 Design the full system: Agent, Memory, Tool, and Workflow layers. Produce the first system architecture diagram.
