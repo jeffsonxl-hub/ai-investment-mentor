@@ -46,3 +46,4 @@ Agents think and decide (they use LLMs). Components execute and store (determini
 
 The `backlog/` directory contains original ChatGPT-generated files from Phase 3. These are archival only. Do not treat them as current specifications. The definitive documents live in `docs/`, `adr/`, `components/`, and `tasks/`.
 
+

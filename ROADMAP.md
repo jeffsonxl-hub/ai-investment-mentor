@@ -81,7 +81,7 @@ Foundation: understand why Agent 』 ChatGPT. Agents maintain state, make decisio
 ### Phase 1 ！ Agent Design ?
 Why divide responsibilities across agents. Each agent owns a clear domain, reducing complexity and enabling independent iteration.
 
-### Phase 2 ！ Decision Flow ? Implemented ！ Codex Sprint: project skeleton, config, logging
+### Phase 2 ！ Decision Flow (Implemented)
 The core of the course. Design the step-by-step process AI uses to go from the full market down to a final recommendation. No code ！ pure decision flow.
 
 ### Phase 3 ！ Memory Layer ?
@@ -125,6 +125,7 @@ The system stops just recommending stocks and starts explaining why. Every stock
 
 ### Phase 16 ！ Evolution
 The system learns. If a stock-picking pattern underperforms over a month, scores auto-adjust. Feedback loop, evaluation, prompt versioning, continuous optimization ！ the assistant adapts to your investment style.
+
 
 
 

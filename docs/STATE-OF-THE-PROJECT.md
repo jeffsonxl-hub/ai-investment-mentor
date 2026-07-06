@@ -24,7 +24,7 @@ The project has 16 phases across 5 stages (see ROADMAP.md). Phases 0¨C3 are conc
 
 ## Where We Are Now
 
-Phase 2 (Architecture Foundation) and Phase 3 (Memory Layer) have conceptual designs but the documentation is skeletal. Codex has taken over from ChatGPT.
+Phase 2 and Phase 3 are complete and implemented. All docs rebuilt to engineering standard, TASK-001 shipped. Codex has taken over from ChatGPT.
 
 ## What We Agreed (Codex Session 2026-07-04)
 
@@ -94,7 +94,9 @@ ChatGPT proposed 6 agents: Market, News, Macro, Technical, Capital Flow, Advisor
 We also have **Watchlist Agent** which ChatGPT's list didn't include.
 
 ## Current Task
-Phase 4 ¡ª DESIGN COMPLETE. Orchestrator design, Pipeline Component spec, ADR-004, and TASK-004 created. Key decisions: DAG-based Pipeline (asyncio), dependency injection, per-step severity (Critical/Warning). 2026-07-06: TASK-001 implemented (project skeleton, config, logging). LLM switched from OpenAI to DeepSeek v4 Pro. Next: TASK-003 (MemoryRepository) or Phase 5.
+Phase 4 ¡ª DESIGN COMPLETE. Orchestrator design, Pipeline Component spec, ADR-004, and TASK-004 created. Key decisions: DAG-based Pipeline (asyncio), dependency injection, per-step severity (Critical/Warning). 2026-07-06: TASK-001 implemented (project skeleton, config, logging). LLM switched from OpenAI to DeepSeek v4 Pro. Session ended 2026-07-06. Next: TASK-003 (MemoryRepository) or Phase 5.
+
+
 
 
 

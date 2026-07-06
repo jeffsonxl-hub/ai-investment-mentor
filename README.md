@@ -62,6 +62,21 @@ Watchlist Agent ©¤©à©¤©¤? Advisor Agent ©¤©¤? User (Morning Report)
 - `tasks/TASK-001-project-bootstrap.md` ¡ª Project skeleton setup
 - `tasks/TASK-003-memory-layer.md` ¡ª MemoryRepository implementation
 
+## Quick Start
+
+All commands run from the project root (`C:\Workspace\codex\ai-investment-mentor`).
+
+```bash
+# Setup
+pip install -r requirements.txt
+cp .env.example .env   # Edit .env with your DeepSeek API key
+
+# Run
+python src/main.py                        # prints project info
+python src/main.py --run-morning-report   # daily pipeline
+pytest                                    # run all tests
+```
+
 ## Getting Started (for Codex)
 Read these in order:
 1. `docs/STATE-OF-THE-PROJECT.md`
@@ -76,5 +91,7 @@ Read these in order:
 - DeepSeek API (OpenAI-compatible) for LLM calls
 - AkShare / TuShare for A-share market data
 - LangGraph in Phase 12+ (not yet)
+
+
 
 
