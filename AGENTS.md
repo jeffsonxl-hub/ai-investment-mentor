@@ -20,6 +20,18 @@ This checklist was established after Phase 3 placed `MemoryRepository` in `agent
 2. The user will specify which phase is active. Do not assume.
 3. Every phase follows: concept discussion ¡ú architecture decisions ¡ú document generation ¡ú Codex Sprint ¡ú review.
 
+
+## Pre-Commit Checklist (MANDATORY)
+
+Before committing and pushing any code, run the full test suite:
+
+```bash
+pip install -r requirements.txt
+pytest
+```
+
+All tests must pass. If a dependency was added during development, update `requirements.txt` before running tests. Never assume the user's environment matches yours.
+
 ## Always-Update Rule
 
 Whenever the project status changes or the roadmap advances, update these two files immediately:
@@ -45,5 +57,6 @@ Agents think and decide (they use LLMs). Components execute and store (determini
 ## Backlog Folder
 
 The `backlog/` directory contains original ChatGPT-generated files from Phase 3. These are archival only. Do not treat them as current specifications. The definitive documents live in `docs/`, `adr/`, `components/`, and `tasks/`.
+
 
 
