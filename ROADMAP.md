@@ -29,7 +29,7 @@
 | Phase | Status | Focus |
 |-------|--------|-------|
 | Phase 4 | [TASK-004](tasks/TASK-004-orchestrator-scaffold.md) | ? Implemented | System Architecture — DAG orchestrator, dependency injection, severity model — Agent, Memory, Tool, Workflow; V1 architecture diagram |
-| Phase 5 | [TASK-005](tasks/TASK-005-data-layer.md) | Designed | Data Layer Design — AkShare, TuShare, news, announcements, database |
+| Phase 5 | [TASK-005](tasks/TASK-005-data-layer.md) | Implemented | Data Layer Design — AkShare, TuShare, news, announcements, database |
 | Phase 6 | ?? Planned | Tool Design — Tool vs Agent vs Memory boundary; why MCP exists |
 | Phase 7 | ?? Planned | Project Planning — directory structure, dev standards, prompt standards, git workflow, Codex collaboration |
 
@@ -91,7 +91,7 @@ Hybrid memory strategy with SQLite persistence. Three memory types: Watchlist, M
 Design the full system: Agent, Memory, Tool, and Workflow layers. Produce the first system architecture diagram.
 
 ### Phase 5 — Data Layer Design
-Data sources and their roles: AkShare, TuShare, news feeds, announcements, database. Design rationale for each choice. Dual-source strategy: TuShare for stable structured data (OHLCV, fundamentals), AkShare for breadth (macro, northbound, news). Single DataProvider Component with graceful degradation. ADR-005 accepted.
+Pivoted from TuShare to pure AkShare after rate-limit issues. AkShareClient: stock_zh_a_hist (OHLCV), stock_zh_a_spot (PE/PB/market cap), stock_info_a_code_name (names), plus macro/news/flow. Single DataProvider Component with graceful degradation. TuShareClient kept as optional. 64 unit + 8 integration tests. ADR-005 accepted.
 
 ### Phase 6 — Tool Design
 Clear boundaries: what is a Tool, what is an Agent, what is Memory. Introduction to MCP — not how to configure it, but why it exists as a protocol.
@@ -125,6 +125,8 @@ The system stops just recommending stocks and starts explaining why. Every stock
 
 ### Phase 16 — Evolution
 The system learns. If a stock-picking pattern underperforms over a month, scores auto-adjust. Feedback loop, evaluation, prompt versioning, continuous optimization — the assistant adapts to your investment style.
+
+
 
 
 

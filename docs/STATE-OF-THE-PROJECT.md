@@ -94,4 +94,6 @@ ChatGPT proposed 6 agents: Market, News, Macro, Technical, Capital Flow, Advisor
 We also have **Watchlist Agent** which ChatGPT list didn't include.
 
 ## Current Task
-Phase 5 — DESIGN COMPLETE. Dual-source data strategy (TuShare + AkShare) decided. ADR-005, data layer design doc, and TASK-005 created. Architecture: single DataProvider Component wrapping AkShareClient (parallel) and TuShareClient (sequential). Database extended with data_source_status table. TASK-005 implementation pending. LLM: DeepSeek v4 Pro. Next: Phase 6 (Tool Design) or TASK-005 implementation.
+Phase 5 — IMPLEMENTED. AkShare-native data layer with graceful degradation. AkShareClient (9 methods), DataProvider (12 methods), data_source_status table. TuShare optional. 64 unit + 8 integration tests pass. Demo runs with zero API keys. Pending: gitignore data/*.db. Next: Phase 6 (Tool Design) or TASK-005 implementation.
+
+
