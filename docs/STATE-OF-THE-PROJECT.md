@@ -94,7 +94,8 @@ ChatGPT proposed 6 agents: Market, News, Macro, Technical, Capital Flow, Advisor
 We also have **Watchlist Agent** which ChatGPT's list didn't include.
 
 ## Current Task
-Phase 4 ¡ª DESIGN COMPLETE. Orchestrator design, Pipeline Component spec, ADR-004, and TASK-004 created. Key decisions: DAG-based Pipeline (asyncio), dependency injection, per-step severity (Critical/Warning). 2026-07-06: TASK-001 implemented (project skeleton, config, logging). LLM switched from OpenAI to DeepSeek v4 Pro. Session ended 2026-07-06. Next: TASK-003 (MemoryRepository) or Phase 5.
+Phase 4 ¡ª DESIGN COMPLETE. Orchestrator design, Pipeline Component spec, ADR-004, and TASK-004 created. Key decisions: DAG-based Pipeline (asyncio), dependency injection, per-step severity (Critical/Warning). 2026-07-06: TASK-001 implemented (project skeleton, config, logging). LLM switched from OpenAI to DeepSeek v4 Pro. Session ended 2026-07-06. 2026-07-06: Phase 2/3/4 all implemented. TASK-001/003/004 complete, 26 tests pass. Next: Phase 5 (Data Layer).
+
 
 
 

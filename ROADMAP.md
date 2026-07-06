@@ -18,7 +18,7 @@
 |-------|--------|-------|
 | [Phase 1](docs/architecture/03-agent-design.md) | ? Complete | Agent Design ！ why agents divide responsibilities |
 | [Phase 2](tasks/TASK-001-project-bootstrap.md) | ? Implemented | Decision Flow ！ AI narrows from whole market to final recommendation |
-| Phase 3 | [TASK-003](tasks/TASK-003-memory-layer.md) | ? Complete | Memory Layer ！ SQLite persistence, three memory types, hybrid strategy |
+| Phase 3 | [TASK-003](tasks/TASK-003-memory-layer.md) | ? Implemented | Memory Layer ！ SQLite persistence, three memory types, hybrid strategy |
 
 **Deliverable:** V1 Agent Design Document, complete decision flow.
 
@@ -28,7 +28,7 @@
 
 | Phase | Status | Focus |
 |-------|--------|-------|
-| Phase 4 | [docs](docs/architecture/06-orchestrator-design.md) | ? Designed | System Architecture ！ DAG orchestrator, dependency injection, severity model ！ Agent, Memory, Tool, Workflow; V1 architecture diagram |
+| Phase 4 | [TASK-004](tasks/TASK-004-orchestrator-scaffold.md) | ? Implemented | System Architecture ！ DAG orchestrator, dependency injection, severity model ！ Agent, Memory, Tool, Workflow; V1 architecture diagram |
 | Phase 5 | ?? Planned | Data Layer Design ！ AkShare, TuShare, news, announcements, database |
 | Phase 6 | ?? Planned | Tool Design ！ Tool vs Agent vs Memory boundary; why MCP exists |
 | Phase 7 | ?? Planned | Project Planning ！ directory structure, dev standards, prompt standards, git workflow, Codex collaboration |
@@ -125,6 +125,7 @@ The system stops just recommending stocks and starts explaining why. Every stock
 
 ### Phase 16 ！ Evolution
 The system learns. If a stock-picking pattern underperforms over a month, scores auto-adjust. Feedback loop, evaluation, prompt versioning, continuous optimization ！ the assistant adapts to your investment style.
+
 
 
 
