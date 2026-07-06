@@ -1,73 +1,73 @@
-# Roadmap: AI Investment Mentor
+ï»¿# Roadmap: AI Investment Mentor
 
 16 phases across 5 stages, from mindset to adaptive AI mentor.
 
 ---
 
-## Stage 0 ¡ª AI Native Mindset
+## Stage 0 â€” AI Native Mindset
 
 | Phase | Status | Focus |
 |-------|--------|-------|
-| [Phase 0](docs/architecture/01-product-vision.md) | ? Complete | AI Native thinking ¡ª why Agent ¡Ù ChatGPT |
+| [Phase 0](docs/architecture/01-product-vision.md) | ? Complete | AI Native thinking â€” why Agent â‰  ChatGPT |
 
 ---
 
-## Stage 1 ¡ª Agent Design
+## Stage 1 â€” Agent Design
 
 | Phase | Status | Focus |
 |-------|--------|-------|
-| [Phase 1](docs/architecture/03-agent-design.md) | ? Complete | Agent Design ¡ª why agents divide responsibilities |
-| [Phase 2](tasks/TASK-001-project-bootstrap.md) | ? Implemented | Decision Flow ¡ª AI narrows from whole market to final recommendation |
-| Phase 3 | [TASK-003](tasks/TASK-003-memory-layer.md) | ? Implemented | Memory Layer ¡ª SQLite persistence, three memory types, hybrid strategy |
+| [Phase 1](docs/architecture/03-agent-design.md) | ? Complete | Agent Design â€” why agents divide responsibilities |
+| [Phase 2](tasks/TASK-001-project-bootstrap.md) | ? Implemented | Decision Flow â€” AI narrows from whole market to final recommendation |
+| Phase 3 | [TASK-003](tasks/TASK-003-memory-layer.md) | ? Implemented | Memory Layer â€” SQLite persistence, three memory types, hybrid strategy |
 
 **Deliverable:** V1 Agent Design Document, complete decision flow.
 
 ---
 
-## Stage 2 ¡ª Architecture
+## Stage 2 â€” Architecture
 
 | Phase | Status | Focus |
 |-------|--------|-------|
-| Phase 4 | [TASK-004](tasks/TASK-004-orchestrator-scaffold.md) | ? Implemented | System Architecture ¡ª DAG orchestrator, dependency injection, severity model ¡ª Agent, Memory, Tool, Workflow; V1 architecture diagram |
-| Phase 5 | ?? Planned | Data Layer Design ¡ª AkShare, TuShare, news, announcements, database |
-| Phase 6 | ?? Planned | Tool Design ¡ª Tool vs Agent vs Memory boundary; why MCP exists |
-| Phase 7 | ?? Planned | Project Planning ¡ª directory structure, dev standards, prompt standards, git workflow, Codex collaboration |
+| Phase 4 | [TASK-004](tasks/TASK-004-orchestrator-scaffold.md) | ? Implemented | System Architecture â€” DAG orchestrator, dependency injection, severity model â€” Agent, Memory, Tool, Workflow; V1 architecture diagram |
+| Phase 5 | [TASK-005](tasks/TASK-005-data-layer.md) | Designed | Data Layer Design â€” AkShare, TuShare, news, announcements, database |
+| Phase 6 | ?? Planned | Tool Design â€” Tool vs Agent vs Memory boundary; why MCP exists |
+| Phase 7 | ?? Planned | Project Planning â€” directory structure, dev standards, prompt standards, git workflow, Codex collaboration |
 
 **Deliverable:** V1 system architecture, data layer design, tool catalog, project standards.
 
 ---
 
-## Stage 3 ¡ª Agent Engineering
+## Stage 3 â€” Agent Engineering
 
 | Phase | Status | Focus |
 |-------|--------|-------|
-| Phase 8 | ?? Planned | Market Agent ¡ª first agent built; all agents depend on data |
-| Phase 9 | ?? Planned | Research Agent ¡ª prompt engineering, tool calling, news & announcement analysis |
-| Phase 10 | ?? Planned | Advisor Agent ¡ª synthesize multiple agents into readable investment advice |
-| Phase 11 | ?? Planned | Stock Selection Agent ¡ª screening with scoring: capital, fundamentals, news, technical |
+| Phase 8 | ?? Planned | Market Agent â€” first agent built; all agents depend on data |
+| Phase 9 | ?? Planned | Research Agent â€” prompt engineering, tool calling, news & announcement analysis |
+| Phase 10 | ?? Planned | Advisor Agent â€” synthesize multiple agents into readable investment advice |
+| Phase 11 | ?? Planned | Stock Selection Agent â€” screening with scoring: capital, fundamentals, news, technical |
 
 **Deliverable:** Four working agents: Market, Research, Advisor, Stock Selection.
 
 ---
 
-## Stage 4 ¡ª LangGraph Orchestration
+## Stage 4 â€” LangGraph Orchestration
 
 | Phase | Status | Focus |
 |-------|--------|-------|
-| Phase 12 | ?? Planned | Why Graph ¡ª Python workflow vs LangGraph comparison |
-| Phase 13 | ?? Planned | LangGraph Rebuild ¡ª State, Node, Edge, Conditional Edge, Parallel, Human-in-the-Loop |
-| Phase 14 | ?? Planned | Advanced LangGraph ¡ª Reflection, Retry, Checkpoint, Long-running Workflow |
+| Phase 12 | ?? Planned | Why Graph â€” Python workflow vs LangGraph comparison |
+| Phase 13 | ?? Planned | LangGraph Rebuild â€” State, Node, Edge, Conditional Edge, Parallel, Human-in-the-Loop |
+| Phase 14 | ?? Planned | Advanced LangGraph â€” Reflection, Retry, Checkpoint, Long-running Workflow |
 
 **Deliverable:** Full system rebuilt on LangGraph with production-grade agent capabilities.
 
 ---
 
-## Stage 5 ¡ª AI Mentor
+## Stage 5 â€” AI Mentor
 
 | Phase | Status | Focus |
 |-------|--------|-------|
-| Phase 15 | ?? Planned | Investment Mentor ¡ª explanations: rationale, risk, evidence, confidence, learning points |
-| Phase 16 | ?? Planned | Evolution ¡ª feedback loop, evaluation, prompt versioning, continuous optimization |
+| Phase 15 | ?? Planned | Investment Mentor â€” explanations: rationale, risk, evidence, confidence, learning points |
+| Phase 16 | ?? Planned | Evolution â€” feedback loop, evaluation, prompt versioning, continuous optimization |
 
 **Deliverable:** A system that teaches you to invest, not just picks stocks.
 
@@ -75,56 +75,58 @@
 
 ## Phase Detail
 
-### Phase 0 ¡ª AI Native Thinking ?
-Foundation: understand why Agent ¡Ù ChatGPT. Agents maintain state, make decisions, and act autonomously over time.
+### Phase 0 â€” AI Native Thinking ?
+Foundation: understand why Agent â‰  ChatGPT. Agents maintain state, make decisions, and act autonomously over time.
 
-### Phase 1 ¡ª Agent Design ?
+### Phase 1 â€” Agent Design ?
 Why divide responsibilities across agents. Each agent owns a clear domain, reducing complexity and enabling independent iteration.
 
-### Phase 2 ¡ª Decision Flow (Implemented)
-The core of the course. Design the step-by-step process AI uses to go from the full market down to a final recommendation. No code ¡ª pure decision flow.
+### Phase 2 â€” Decision Flow (Implemented)
+The core of the course. Design the step-by-step process AI uses to go from the full market down to a final recommendation. No code â€” pure decision flow.
 
-### Phase 3 ¡ª Memory Layer ?
+### Phase 3 â€” Memory Layer ?
 Hybrid memory strategy with SQLite persistence. Three memory types: Watchlist, Market, Decision. MemoryRepository component (no LLM, no business logic). Deliverables: [ADR-003](adr/ADR-003-memory-strategy.md), [design doc](docs/architecture/05-memory-design.md), [component spec](components/memory-repository.md), [TASK-003](tasks/TASK-003-memory-layer.md).
 
-### Phase 4 ¡ª System Architecture
+### Phase 4 â€” System Architecture
 Design the full system: Agent, Memory, Tool, and Workflow layers. Produce the first system architecture diagram.
 
-### Phase 5 ¡ª Data Layer Design
-Data sources and their roles: AkShare, TuShare, news feeds, announcements, database. Design rationale for each choice.
+### Phase 5 â€” Data Layer Design
+Data sources and their roles: AkShare, TuShare, news feeds, announcements, database. Design rationale for each choice. Dual-source strategy: TuShare for stable structured data (OHLCV, fundamentals), AkShare for breadth (macro, northbound, news). Single DataProvider Component with graceful degradation. ADR-005 accepted.
 
-### Phase 6 ¡ª Tool Design
-Clear boundaries: what is a Tool, what is an Agent, what is Memory. Introduction to MCP ¡ª not how to configure it, but why it exists as a protocol.
+### Phase 6 â€” Tool Design
+Clear boundaries: what is a Tool, what is an Agent, what is Memory. Introduction to MCP â€” not how to configure it, but why it exists as a protocol.
 
-### Phase 7 ¡ª Project Planning
+### Phase 7 â€” Project Planning
 Codex begins. Directory structure, development standards, prompt standards, git workflow. Heavy emphasis on how to collaborate effectively with Codex.
 
-### Phase 8 ¡ª Market Agent
+### Phase 8 â€” Market Agent
 First agent implementation. Market Agent comes before Advisor because every agent depends on data access.
 
-### Phase 9 ¡ª Research Agent
+### Phase 9 â€” Research Agent
 Prompt engineering, tool calling, news analysis, announcement parsing, structured output generation.
 
-### Phase 10 ¡ª Advisor Agent
+### Phase 10 â€” Advisor Agent
 The most important code phase. Synthesize output from multiple agents into genuinely readable, actionable investment advice.
 
-### Phase 11 ¡ª Stock Selection Agent
+### Phase 11 â€” Stock Selection Agent
 Real stock screening. Multi-dimensional scoring: capital flow, fundamentals, news sentiment, technical indicators.
 
-### Phase 12 ¡ª Why Graph
+### Phase 12 â€” Why Graph
 Compare the existing Python workflow with LangGraph. Understand the problem LangGraph solves before adopting it.
 
-### Phase 13 ¡ª LangGraph Rebuild
+### Phase 13 â€” LangGraph Rebuild
 Rebuild the entire system on LangGraph: State, Node, Edge, Conditional Edge, Parallel execution, Human-in-the-Loop.
 
-### Phase 14 ¡ª Advanced LangGraph
+### Phase 14 â€” Advanced LangGraph
 Production-grade patterns: Reflection, Retry, Checkpoint, Long-running Workflow. The system becomes truly agentic.
 
-### Phase 15 ¡ª Investment Mentor
+### Phase 15 â€” Investment Mentor
 The system stops just recommending stocks and starts explaining why. Every stock gets: rationale, risk assessment, evidence, confidence score, and learning points.
 
-### Phase 16 ¡ª Evolution
-The system learns. If a stock-picking pattern underperforms over a month, scores auto-adjust. Feedback loop, evaluation, prompt versioning, continuous optimization ¡ª the assistant adapts to your investment style.
+### Phase 16 â€” Evolution
+The system learns. If a stock-picking pattern underperforms over a month, scores auto-adjust. Feedback loop, evaluation, prompt versioning, continuous optimization â€” the assistant adapts to your investment style.
+
+
 
 
 

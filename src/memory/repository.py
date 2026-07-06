@@ -1,4 +1,4 @@
-"""MemoryRepository -- deterministic SQLite persistence for all three memory types.
+ï»¿"""MemoryRepository -- deterministic SQLite persistence for all three memory types.
 
 This is a Component, not an Agent. No LLM, no reasoning, no business logic.
 """
@@ -36,7 +36,6 @@ class MemoryRepository:
                 self._conn.execute(stmt)
             for stmt in ALL_INDEXES:
                 self._conn.execute(stmt)
-            # Set version if table is empty
             row = self._conn.execute(
                 "SELECT COUNT(*) FROM schema_version"
             ).fetchone()
@@ -68,7 +67,7 @@ class MemoryRepository:
         except sqlite3.Error as e:
             raise MemoryRepositoryError(f"Database error: {e}")
 
-    # ©¤©¤ Watchlist ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+    # -- Watchlist ------------------------------------------------------------
 
     def get_watchlist(self) -> list[dict]:
         rows = self._execute(
@@ -127,7 +126,7 @@ class MemoryRepository:
         )
         self._get_conn().commit()
 
-    # ©¤©¤ Market Snapshots ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+    # -- Market Snapshots -----------------------------------------------------
 
     def get_latest_market_snapshot(self) -> dict | None:
         row = self._execute(
@@ -179,7 +178,7 @@ class MemoryRepository:
         ).fetchall()
         return [dict(r) for r in rows]
 
-    # ©¤©¤ Decisions ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+    # -- Decisions ------------------------------------------------------------
 
     def save_decision(self, decision: dict) -> None:
         now = datetime.now(timezone.utc).isoformat()
@@ -245,11 +244,36 @@ class MemoryRepository:
         )
         self._get_conn().commit()
 
-    # ©¤©¤ Helpers ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+    # -- Data Source Status ---------------------------------------------------
+
+    def save_source_status(
+        self, source: str, status: str, error_message: str | None = None,
+    ) -> None:
+        """Record a data source operational status for today."""
+        self._execute(
+            "INSERT INTO data_source_status (date, source, status, error_message, created_at) "
+            "VALUES (?, ?, ?, ?, ?)",
+            (self._now_date(), source, status, error_message, self._now_iso()),
+        )
+        self._get_conn().commit()
+
+    def get_source_status(self, date: str) -> list[dict]:
+        """Return all source status records for a given date."""
+        rows = self._execute(
+            "SELECT * FROM data_source_status WHERE date = ? ORDER BY created_at",
+            (date,),
+        ).fetchall()
+        return [dict(r) for r in rows]
+
+    # -- Helpers --------------------------------------------------------------
 
     @staticmethod
     def _now_date(offset_days: int = 0) -> str:
-        """Return today's date in ISO format, optionally offset by N days."""
+        """Return today's date in ISO 8601 format (YYYY-MM-DD), optionally offset by N days."""
         from datetime import date, timedelta
         return (date.today() + timedelta(days=offset_days)).isoformat()
 
+    @staticmethod
+    def _now_iso() -> str:
+        """Return current UTC datetime in ISO 8601 format."""
+        return datetime.now(timezone.utc).isoformat()

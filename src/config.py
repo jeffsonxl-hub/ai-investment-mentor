@@ -1,4 +1,4 @@
-"""Singleton configuration for AI Investment Mentor.
+﻿"""Singleton configuration for AI Investment Mentor.
 
 Loads all settings from environment variables with sensible defaults.
 Configuration is immutable after loading - call load_config() once at startup.
@@ -28,9 +28,14 @@ class Config:
     db_path: str = "data/ai_mentor.db"
 
     # Data Sources
+    tushare_token: str = ""
     akshare_cache_dir: str = "data/cache"
     data_timeout_seconds: int = 30
     data_max_retries: int = 1
+    tushare_call_timeout: int = 15
+    akshare_call_timeout: int = 30
+    akshare_parallel_limit: int = 10
+    news_default_limit: int = 20
 
     # Logging
     log_level: str = "INFO"
@@ -52,20 +57,23 @@ def load_config(env_path: str = ".env") -> Config:
 
     Returns a frozen Config object. Call once at application startup.
     """
-    # Try loading .env file if it exists (optional)
-    try:
-        with open(env_path) as f:
-            for line in f:
-                line = line.strip()
-                if not line or line.startswith("#") or "=" not in line:
-                    continue
-                key, _, value = line.partition("=")
-                key = key.strip()
-                value = value.strip().strip(chr(39) + chr(34))
-                if key and key not in os.environ:
-                    os.environ[key] = value
-    except FileNotFoundError:
-        pass  # .env file is optional
+    # Try loading .env file if it exists (optional). Windows may save it
+    # as UTF-16 or GBK, so try multiple encodings.
+    for enc in ("utf-8", "utf-8-sig", "ascii", "gbk"):
+        try:
+            with open(env_path, encoding=enc) as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    key, _, value = line.partition("=")
+                    key = key.strip()
+                    value = value.strip().strip("'").strip('"')
+                    if key and key not in os.environ:
+                        os.environ[key] = value
+            break
+        except (UnicodeDecodeError, FileNotFoundError):
+            continue
 
     return Config(
         llm_api_key=os.getenv("LLM_API_KEY", ""),
@@ -74,12 +82,16 @@ def load_config(env_path: str = ".env") -> Config:
         llm_timeout_seconds=int(os.getenv("LLM_TIMEOUT_SECONDS", "60")),
         llm_max_retries=int(os.getenv("LLM_MAX_RETRIES", "2")),
         db_path=os.getenv("DB_PATH", "data/ai_mentor.db"),
+        tushare_token=os.getenv("TUSHARE_TOKEN", ""),
         akshare_cache_dir=os.getenv("AKSHARE_CACHE_DIR", "data/cache"),
         data_timeout_seconds=int(os.getenv("DATA_TIMEOUT_SECONDS", "30")),
         data_max_retries=int(os.getenv("DATA_MAX_RETRIES", "1")),
+        tushare_call_timeout=int(os.getenv("TUSHARE_CALL_TIMEOUT", "15")),
+        akshare_call_timeout=int(os.getenv("AKSHARE_CALL_TIMEOUT", "30")),
+        akshare_parallel_limit=int(os.getenv("AKSHARE_PARALLEL_LIMIT", "10")),
+        news_default_limit=int(os.getenv("NEWS_DEFAULT_LIMIT", "20")),
         log_level=os.getenv("LOG_LEVEL", "INFO"),
         log_file=os.getenv("LOG_FILE", "logs/ai_mentor.log"),
         log_format=os.getenv("LOG_FORMAT", "json"),
         daily_analysis_time=os.getenv("DAILY_ANALYSIS_TIME", "08:30"),
     )
-

@@ -1,10 +1,10 @@
-"""SQLite table definitions for AI Investment Mentor.
+﻿"""SQLite table definitions for AI Investment Mentor.
 
 All CREATE TABLE and CREATE INDEX statements as constants.
-Schema version: 1
+Schema version: 2
 """
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 
 CREATE_WATCHLIST = """
 CREATE TABLE IF NOT EXISTS watchlist (
@@ -73,6 +73,21 @@ CREATE_DECISIONS_INDEXES = [
     "CREATE INDEX IF NOT EXISTS idx_decisions_feedback ON decisions(user_feedback, date)",
 ]
 
+CREATE_DATA_SOURCE_STATUS = """
+CREATE TABLE IF NOT EXISTS data_source_status (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date TEXT NOT NULL,
+    source TEXT NOT NULL,
+    status TEXT NOT NULL,
+    error_message TEXT,
+    created_at TEXT NOT NULL
+)
+"""
+
+CREATE_DATA_SOURCE_STATUS_INDEXES = [
+    "CREATE INDEX IF NOT EXISTS idx_source_status_date ON data_source_status(date, source)",
+]
+
 CREATE_VERSION = """
 CREATE TABLE IF NOT EXISTS schema_version (
     version INTEGER
@@ -83,6 +98,7 @@ ALL_TABLES = [
     CREATE_WATCHLIST,
     CREATE_MARKET_SNAPSHOTS,
     CREATE_DECISIONS,
+    CREATE_DATA_SOURCE_STATUS,
     CREATE_VERSION,
 ]
 
@@ -90,4 +106,5 @@ ALL_INDEXES = (
     CREATE_WATCHLIST_INDEXES
     + CREATE_MARKET_INDEXES
     + CREATE_DECISIONS_INDEXES
+    + CREATE_DATA_SOURCE_STATUS_INDEXES
 )

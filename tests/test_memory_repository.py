@@ -1,4 +1,4 @@
-"""Tests for MemoryRepository component."""
+﻿"""Tests for MemoryRepository component."""
 
 import os
 import sys
@@ -257,8 +257,71 @@ def test_repository_initialization_creates_tables(tmp_path):
 
     # Schema version table exists with correct version
     version = conn.execute("SELECT version FROM schema_version").fetchone()
-    assert version[0] == 1
+    assert version[0] == 2
 
     conn.close()
     repo.close()
+
+
+def test_source_status_save_and_get(tmp_path):
+    """save_source_status should write and get_source_status should read back."""
+    from memory.repository import MemoryRepository
+
+    repo = MemoryRepository(str(tmp_path / "test.db"))
+
+    repo.save_source_status("tushare", "success", None)
+    repo.save_source_status("akshare", "partial", "macro fetch timeout")
+
+    today = repo._now_date(); records = repo.get_source_status(today)
+    assert len(records) == 2
+    assert records[0]["source"] == "tushare"
+    # verify all records have today's date
+    today = repo._now_date()
+    for r in records:
+        assert r["date"] == today
+    assert records[0]["status"] == "success"
+    assert records[0]["error_message"] is None
+    assert records[1]["source"] == "akshare"
+    assert records[1]["status"] == "partial"
+    assert records[1]["error_message"] == "macro fetch timeout"
+
+    repo.close()
+
+
+def test_source_status_filter_by_date(tmp_path):
+    """get_source_status should only return records for the given date."""
+    from memory.repository import MemoryRepository
+
+    repo = MemoryRepository(str(tmp_path / "test.db"))
+    repo.save_source_status("tushare", "success")
+
+    # Query a different date — should be empty
+    # Query a different date — should be empty
+    records = repo.get_source_status("2026-01-01")
+    assert records == []
+
+    repo.close()
+
+
+def test_source_status_initialization_creates_table(tmp_path):
+    """data_source_status table should be created on initialization."""
+    import sqlite3
+    from memory.repository import MemoryRepository
+
+    db_path = str(tmp_path / "test.db")
+    repo = MemoryRepository(db_path)
+    repo.initialize()
+
+    conn = sqlite3.connect(db_path)
+    tables = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
+    ).fetchall()
+    table_names = [t[0] for t in tables]
+
+    assert "data_source_status" in table_names
+
+    conn.close()
+    repo.close()
+
+
 

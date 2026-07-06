@@ -1,4 +1,4 @@
-"""Tests for Pipeline DAG executor."""
+﻿"""Tests for Pipeline DAG executor."""
 
 import asyncio
 import os
@@ -247,5 +247,6 @@ def test_pipeline_result_structure():
     assert pr.status == "complete"
     assert pr.degraded_steps == []
     assert pr.failed_steps == []
+
 
 
