@@ -8,7 +8,7 @@
 
 | Phase | Status | Focus |
 |-------|--------|-------|
-| [Phase 0](docs/architecture/01-product-vision.md) | ? Complete | AI Native thinking �� why Agent �� ChatGPT |
+| [Phase 0](docs/architecture/01-product-vision.md) | [x] Complete | AI Native thinking �� why Agent �� ChatGPT |
 
 ---
 
@@ -16,9 +16,9 @@
 
 | Phase | Status | Focus |
 |-------|--------|-------|
-| [Phase 1](docs/architecture/03-agent-design.md) | ? Complete | Agent Design �� why agents divide responsibilities |
-| [Phase 2](tasks/TASK-001-project-bootstrap.md) | ? Implemented | Decision Flow �� AI narrows from whole market to final recommendation |
-| Phase 3 | [TASK-003](tasks/TASK-003-memory-layer.md) | ? Implemented | Memory Layer �� SQLite persistence, three memory types, hybrid strategy |
+| [Phase 1](docs/architecture/03-agent-design.md) | [x] Complete | Agent Design �� why agents divide responsibilities |
+| [Phase 2](tasks/TASK-001-project-bootstrap.md) | [x] Implemented | Decision Flow �� AI narrows from whole market to final recommendation |
+| Phase 3 | [TASK-003](tasks/TASK-003-memory-layer.md) | [x] Implemented | Memory Layer �� SQLite persistence, three memory types, hybrid strategy |
 
 **Deliverable:** V1 Agent Design Document, complete decision flow.
 
@@ -28,10 +28,10 @@
 
 | Phase | Status | Focus |
 |-------|--------|-------|
-| Phase 4 | [TASK-004](tasks/TASK-004-orchestrator-scaffold.md) | ? Implemented | System Architecture �� DAG orchestrator, dependency injection, severity model �� Agent, Memory, Tool, Workflow; V1 architecture diagram |
+| Phase 4 | [TASK-004](tasks/TASK-004-orchestrator-scaffold.md) | [x] Implemented | System Architecture �� DAG orchestrator, dependency injection, severity model �� Agent, Memory, Tool, Workflow; V1 architecture diagram |
 | Phase 5 | [TASK-005](tasks/TASK-005-data-layer.md) | Implemented | Data Layer Design �� AkShare, TuShare, news, announcements, database |
 | Phase 6 | [ADR-006](adr/ADR-006-tool-design.md), [design](docs/architecture/08-tool-design.md), [TASK-006](tasks/TASK-006-tool-implementation.md) | Implemented | Tool Design �� Tool vs Agent vs Memory boundary; MCP compatibility; 34-tool catalog; per-Agent authorization |
-| Phase 7 | ?? Planned | Project Planning �� directory structure, dev standards, prompt standards, git workflow, Codex collaboration |
+| Phase 7 | [ ] Planned | Project Planning �� directory structure, dev standards, prompt standards, git workflow, Codex collaboration |
 
 **Deliverable:** V1 system architecture, data layer design, tool catalog, project standards.
 
@@ -41,10 +41,10 @@
 
 | Phase | Status | Focus |
 |-------|--------|-------|
-| Phase 8 | ?? Planned | Market Agent �� first agent built; all agents depend on data |
-| Phase 9 | ?? Planned | Research Agent �� prompt engineering, tool calling, news & announcement analysis |
-| Phase 10 | ?? Planned | Advisor Agent �� synthesize multiple agents into readable investment advice |
-| Phase 11 | ?? Planned | Stock Selection Agent �� screening with scoring: capital, fundamentals, news, technical |
+| Phase 8 | [ ] Planned | Market Agent �� first agent built; all agents depend on data |
+| Phase 9 | [ ] Planned | Research Agent �� prompt engineering, tool calling, news & announcement analysis |
+| Phase 10 | [ ] Planned | Advisor Agent �� synthesize multiple agents into readable investment advice |
+| Phase 11 | [ ] Planned | Stock Selection Agent �� screening with scoring: capital, fundamentals, news, technical |
 
 **Deliverable:** Four working agents: Market, Research, Advisor, Stock Selection.
 
@@ -54,9 +54,9 @@
 
 | Phase | Status | Focus |
 |-------|--------|-------|
-| Phase 12 | ?? Planned | Why Graph �� Python workflow vs LangGraph comparison |
-| Phase 13 | ?? Planned | LangGraph Rebuild �� State, Node, Edge, Conditional Edge, Parallel, Human-in-the-Loop |
-| Phase 14 | ?? Planned | Advanced LangGraph �� Reflection, Retry, Checkpoint, Long-running Workflow |
+| Phase 12 | [ ] Planned | Why Graph �� Python workflow vs LangGraph comparison |
+| Phase 13 | [ ] Planned | LangGraph Rebuild �� State, Node, Edge, Conditional Edge, Parallel, Human-in-the-Loop |
+| Phase 14 | [ ] Planned | Advanced LangGraph �� Reflection, Retry, Checkpoint, Long-running Workflow |
 
 **Deliverable:** Full system rebuilt on LangGraph with production-grade agent capabilities.
 
@@ -66,8 +66,8 @@
 
 | Phase | Status | Focus |
 |-------|--------|-------|
-| Phase 15 | ?? Planned | Investment Mentor �� explanations: rationale, risk, evidence, confidence, learning points |
-| Phase 16 | ?? Planned | Evolution �� feedback loop, evaluation, prompt versioning, continuous optimization |
+| Phase 15 | [ ] Planned | Investment Mentor �� explanations: rationale, risk, evidence, confidence, learning points |
+| Phase 16 | [ ] Planned | Evolution �� feedback loop, evaluation, prompt versioning, continuous optimization |
 
 **Deliverable:** A system that teaches you to invest, not just picks stocks.
 
