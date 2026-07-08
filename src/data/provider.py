@@ -5,12 +5,10 @@ Uses AkShare for all data categories. TuShare is optional (kept for V2).
 This is a Component (deterministic, no LLM), not an Agent.
 """
 
-import asyncio
 import logging
 from typing import TYPE_CHECKING
 
 from .ak_share_client import AkShareClient
-from .exceptions import DataFetchError
 from .tu_share_client import TuShareClient
 
 if TYPE_CHECKING:
@@ -114,7 +112,9 @@ class DataProvider:
     # -- Fundamental Data -----------------------------------------------------
 
     async def get_fundamental_snapshot(
-        self, ts_codes: list[str], date: str,
+        self,
+        ts_codes: list[str],
+        date: str,
     ) -> list[dict]:
         result = []
         try:
@@ -126,16 +126,18 @@ class DataProvider:
             code_set = {c.split(".")[0] if "." in c else c for c in ts_codes}
             for row in all_spot:
                 if row.get("code", "") in code_set:
-                    result.append({
-                        "ts_code": row.get("code", ""),
-                        "name": row.get("name", ""),
-                        "pe": row.get("pe"),
-                        "pb": row.get("pb"),
-                        "total_mv": row.get("market_cap"),
-                        "price": row.get("price"),
-                        "change_pct": row.get("change_pct"),
-                        "turnover": row.get("turnover"),
-                    })
+                    result.append(
+                        {
+                            "ts_code": row.get("code", ""),
+                            "name": row.get("name", ""),
+                            "pe": row.get("pe"),
+                            "pb": row.get("pb"),
+                            "total_mv": row.get("market_cap"),
+                            "price": row.get("price"),
+                            "change_pct": row.get("change_pct"),
+                            "turnover": row.get("turnover"),
+                        }
+                    )
             await self._record("akshare", "success")
         except Exception as e:
             logger.warning("AkShare stock spot failed: %s", e)
@@ -211,7 +213,10 @@ class DataProvider:
         return self._memory.get_source_status(date)
 
     async def _record_source_status(
-        self, source: str, status: str, error: str | None = None,
+        self,
+        source: str,
+        status: str,
+        error: str | None = None,
     ) -> None:
         self._memory.save_source_status(source, status, error)
 

@@ -7,7 +7,7 @@ import asyncio
 import time
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Callable, Awaitable, Any
+from typing import Awaitable, Callable
 
 
 class StepSeverity(Enum):
@@ -72,9 +72,7 @@ class Pipeline:
         for name, step in self._steps.items():
             for dep in step.depends_on:
                 if dep not in self._steps:
-                    raise ValueError(
-                        f"Step '{name}' depends on '{dep}', which does not exist"
-                    )
+                    raise ValueError(f"Step '{name}' depends on '{dep}', which does not exist")
         self._check_cycles()
 
     def _check_cycles(self) -> None:
@@ -102,9 +100,7 @@ class Pipeline:
         aborted = False
 
         dependents: dict[str, list[str]] = {name: [] for name in self._steps}
-        pending_deps: dict[str, set[str]] = {
-            name: set(step.depends_on) for name, step in self._steps.items()
-        }
+        pending_deps: dict[str, set[str]] = {name: set(step.depends_on) for name, step in self._steps.items()}
 
         for name, step in self._steps.items():
             for dep in step.depends_on:
@@ -131,9 +127,7 @@ class Pipeline:
                     break
                 if name in running_tasks:
                     continue
-                running_tasks[name] = asyncio.create_task(
-                    self._run_step(self._steps[name])
-                )
+                running_tasks[name] = asyncio.create_task(self._run_step(self._steps[name]))
 
             if not running_tasks:
                 break
@@ -200,13 +194,9 @@ class Pipeline:
     async def _run_step(self, step: _Step) -> StepResult:
         t0 = time.monotonic()
         try:
-            data = await asyncio.wait_for(
-                self._run_with_retry(step), timeout=step.timeout_seconds
-            )
+            data = await asyncio.wait_for(self._run_with_retry(step), timeout=step.timeout_seconds)
             duration_ms = int((time.monotonic() - t0) * 1000)
-            return StepResult(
-                step_name=step.name, status="ok", data=data, duration_ms=duration_ms
-            )
+            return StepResult(step_name=step.name, status="ok", data=data, duration_ms=duration_ms)
         except asyncio.TimeoutError:
             duration_ms = int((time.monotonic() - t0) * 1000)
             return StepResult(

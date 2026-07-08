@@ -1,4 +1,4 @@
-﻿"""Tool - a callable capability exposed to an Agent LLM via function calling."""
+"""Tool - a callable capability exposed to an Agent LLM via function calling."""
 
 from __future__ import annotations
 
@@ -9,6 +9,7 @@ from typing import Any, Awaitable, Callable, ClassVar
 @dataclass
 class ToolParameter:
     """A single parameter in a Tool JSON Schema."""
+
     name: str
     type: str
     description: str
@@ -20,6 +21,7 @@ class ToolParameter:
 @dataclass
 class Tool:
     """A callable capability exposed to an Agent LLM."""
+
     name: str
     description: str
     parameters: list[ToolParameter]
@@ -61,8 +63,12 @@ class Tool:
         }
 
     _TYPE_MAP: ClassVar[dict[str, type | tuple[type, ...]]] = {
-        "string": str, "number": (int, float), "integer": int,
-        "boolean": bool, "array": list, "object": dict,
+        "string": str,
+        "number": (int, float),
+        "integer": int,
+        "boolean": bool,
+        "array": list,
+        "object": dict,
     }
 
     def _validate_params(self, **kwargs: Any) -> None:

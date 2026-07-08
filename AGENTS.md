@@ -1,4 +1,4 @@
-ï»¿# AGENTS.md ï¿½ï¿½ Project Workflow Instructions
+# AGENTS.md \u2014 Project Workflow Instructions
 
 ## Phase Validation Checklist
 
@@ -18,40 +18,44 @@ This checklist was established after Phase 3 placed `MemoryRepository` in `agent
 
 1. Codex is the active collaborator on this project, not ChatGPT. Do not assume any ChatGPT output is authoritative.
 2. The user will specify which phase is active. Do not assume.
-3. Every phase follows: concept discussion ï¿½ï¿½ architecture decisions ï¿½ï¿½ document generation ï¿½ï¿½ Codex Sprint ï¿½ï¿½ review.
+3. Every phase follows: concept discussion \u2192 architecture decisions \u2192 document generation \u2192 Codex Sprint \u2192 review.
+4. After document generation in each phase, run the `plan-eng-review` skill on all newly generated documents before proceeding to the Codex Sprint. This catches architecture issues, missing edge cases, and spec gaps before implementation begins.
 
-
-
+---
 
 ## Pre-Delivery Smoke Test (MANDATORY)
 
-Before declaring any phase complete, run this end-to-end sequence in a clean state â€” do not rely on pre-installed packages or cached bytecode:
+Before declaring any phase complete, run this end-to-end sequence in a clean state:
 
-`powershell
+```powershell
 # 1. Start from a clean virtual environment
 python -m venv .venv --clear
 .\.venv\Scripts\Activate.ps1
 
-# 2. Install all dependencies fresh â€” this catches missing requirements.txt entries
+# 2. Install all dependencies fresh
 pip install -r requirements.txt
 
-# 3. Clear any stale .pyc cache that could mask code changes
+# 3. Clear any stale .pyc cache
 Get-ChildItem -Path src -Recurse -Filter "__pycache__" | Remove-Item -Recurse -Force
 
-# 4. Run the full test suite â€” zero failures is the only acceptance bar
+# 4. Run the full test suite
 python -m pytest tests/ -q
 
 # 5. If integration tests exist, run them too (requires API tokens in .env)
 python -m pytest tests/test_integration.py -v
-`
+```
 
-If any step fails, fix it before marking the phase complete. The user's environment is the ground truth â€” never assume your environment matches theirs.
+If any step fails, fix it before marking the phase complete. The user's environment is the ground truth.
 
+---
 
+## Dependencies Rule (MANDATORY)
 
-Every time a new Python package is imported in any source file, equirements.txt must be updated and pip install -r requirements.txt must run successfully before the work is considered done. Tests depend on these packages â€” a passing test suite after pip install -r requirements.txt is the only acceptance criterion. Never assume a package is already installed in the user's environment.
+Every time a new Python package is imported in any source file, `requirements.txt` must be updated and `pip install -r requirements.txt` must run successfully before the work is considered done. Tests depend on these packages. Never assume a package is already installed in the user's environment.
 
- (MANDATORY)
+---
+
+## Pre-Commit Checklist (MANDATORY)
 
 Before committing and pushing any code, run the full test suite:
 
@@ -60,14 +64,15 @@ pip install -r requirements.txt
 pytest
 ```
 
-All tests must pass. If a dependency was added during development, update `requirements.txt` before running tests. Never assume the user's environment matches yours.
+All tests must pass. If a dependency was added during development, update `requirements.txt` before running tests.
 
 ## Always-Update Rule
 
-Whenever the project status changes or the roadmap advances, update these two files immediately:
+Whenever the project status changes or the roadmap advances, update these three files immediately:
 
-- `docs/STATE-OF-THE-PROJECT.md` ï¿½ï¿½ update the "Current Task" line and any relevant context
-- `ROADMAP.md` ï¿½ï¿½ update phase statuses and fix any stale file references
+- `docs/STATE-OF-THE-PROJECT.md` \u2014 update the "Current Task" line and any relevant context
+- `ROADMAP.md` ¡ª update phase statuses and fix any stale file references
+- `docs/LEARNINGS.md` ¡ª add new entries when a phase teaches something worth remembering
 
 These are my persistent memory. If they go stale, I lose context between sessions. Treat them as live documents.
 
@@ -83,12 +88,3 @@ All documents follow the templates defined in `PROJECT_RULES.md`:
 ## Key Distinction
 
 Agents think and decide (they use LLMs). Components execute and store (deterministic, no LLM). Never confuse them. Never put a Component in `agents/`.
-
-## Backlog Folder
-
-The `backlog/` directory contains original ChatGPT-generated files from Phase 3. These are archival only. Do not treat them as current specifications. The definitive documents live in `docs/`, `adr/`, `components/`, and `tasks/`.
-
-
-
-
-

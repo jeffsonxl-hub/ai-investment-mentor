@@ -30,3 +30,7 @@ build/
 *.log
 
 data/*.db
+.venv-1/
+
+.ruff_cache/
+.mypy_cache/

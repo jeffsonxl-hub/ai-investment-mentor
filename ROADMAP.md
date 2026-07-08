@@ -1,4 +1,4 @@
-﻿# Roadmap: AI Investment Mentor
+# Roadmap: AI Investment Mentor
 
 16 phases across 5 stages, from mindset to adaptive AI mentor.
 
@@ -31,7 +31,7 @@
 | Phase 4 | [TASK-004](tasks/TASK-004-orchestrator-scaffold.md) | [x] Implemented | System Architecture  -- DAG orchestrator, dependency injection, severity model  -- Agent, Memory, Tool, Workflow; V1 architecture diagram |
 | Phase 5 | [TASK-005](tasks/TASK-005-data-layer.md) | Implemented | Data Layer Design  -- AkShare, TuShare, news, announcements, database |
 | Phase 6 | [ADR-006](adr/ADR-006-tool-design.md), [design](docs/architecture/08-tool-design.md), [TASK-006](tasks/TASK-006-tool-implementation.md) | Implemented | Tool Design  -- Tool vs Agent vs Memory boundary; MCP compatibility; 34-tool catalog; per-Agent authorization |
-| Phase 7 | [ ] Planned | Project Planning  -- directory structure, dev standards, prompt standards, git workflow, Codex collaboration |
+| Phase 7 | [x] Complete | Project Planning -- dev standards, prompt standards, git workflow  -- directory structure, dev standards, prompt standards, git workflow, Codex collaboration |
 
 **Deliverable:** V1 system architecture, data layer design, tool catalog, project standards.
 

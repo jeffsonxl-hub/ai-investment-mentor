@@ -33,6 +33,7 @@ class AkShareClient:
         """Lazy import akshare so module loads even if akshare is missing."""
         if self._ak is None:
             import akshare as ak
+
             self._ak = ak
         return self._ak
 
@@ -158,12 +159,14 @@ class AkShareClient:
                 return []
             result = []
             for _, row in df.head(limit).iterrows():
-                result.append({
-                    "title": str(row.get("标题", row.get("title", ""))),
-                    "content": str(row.get("内容", row.get("content", ""))),
-                    "publish_time": str(row.get("发布时间", row.get("publish_time", ""))),
-                    "source": str(row.get("文章来源", row.get("source", ""))),
-                })
+                result.append(
+                    {
+                        "title": str(row.get("标题", row.get("title", ""))),
+                        "content": str(row.get("内容", row.get("content", ""))),
+                        "publish_time": str(row.get("发布时间", row.get("publish_time", ""))),
+                        "source": str(row.get("文章来源", row.get("source", ""))),
+                    }
+                )
             return result
         except Exception:
             return []
@@ -177,12 +180,14 @@ class AkShareClient:
                 return []
             result = []
             for _, row in df.head(limit).iterrows():
-                result.append({
-                    "title": str(row.get("name", row.get("标题", ""))),
-                    "type": "",
-                    "publish_date": str(row.get("date", row.get("发布日期", ""))),
-                    "summary": str(row.get("content", row.get("内容", ""))),
-                })
+                result.append(
+                    {
+                        "title": str(row.get("name", row.get("标题", ""))),
+                        "type": "",
+                        "publish_date": str(row.get("date", row.get("发布日期", ""))),
+                        "summary": str(row.get("content", row.get("内容", ""))),
+                    }
+                )
             return result
         except Exception:
             return []
@@ -198,29 +203,37 @@ class AkShareClient:
             return []
 
     async def get_stock_daily(
-        self, symbol: str, start_date: str, end_date: str,
+        self,
+        symbol: str,
+        start_date: str,
+        end_date: str,
     ) -> list[dict]:
         try:
             ak = self._get_ak()
             df = await self._run_sync(
                 ak.stock_zh_a_hist,
-                symbol=symbol, period="daily",
-                start_date=start_date, end_date=end_date, adjust="qfq",
+                symbol=symbol,
+                period="daily",
+                start_date=start_date,
+                end_date=end_date,
+                adjust="qfq",
             )
             if df is None or df.empty:
                 return []
             result = []
             for _, row in df.iterrows():
-                result.append({
-                    "date": str(row.get("日期", "")),
-                    "open": _safe_float(row.get("开盘")),
-                    "close": _safe_float(row.get("收盘")),
-                    "high": _safe_float(row.get("最高")),
-                    "low": _safe_float(row.get("最低")),
-                    "volume": _safe_float(row.get("成交量")),
-                    "amount": _safe_float(row.get("成交额")),
-                    "pct_change": _safe_float(row.get("涨跌幅")),
-                })
+                result.append(
+                    {
+                        "date": str(row.get("日期", "")),
+                        "open": _safe_float(row.get("开盘")),
+                        "close": _safe_float(row.get("收盘")),
+                        "high": _safe_float(row.get("最高")),
+                        "low": _safe_float(row.get("最低")),
+                        "volume": _safe_float(row.get("成交量")),
+                        "amount": _safe_float(row.get("成交额")),
+                        "pct_change": _safe_float(row.get("涨跌幅")),
+                    }
+                )
             return result
         except Exception:
             return []
@@ -233,16 +246,18 @@ class AkShareClient:
                 return []
             result = []
             for _, row in df.iterrows():
-                result.append({
-                    "code": str(row.get("code", "")),
-                    "name": str(row.get("name", "")),
-                    "price": _safe_float(row.get("trade")),
-                    "pe": _safe_float(row.get("per")),
-                    "pb": _safe_float(row.get("pb")),
-                    "market_cap": _safe_float(row.get("mktcap")),
-                    "turnover": _safe_float(row.get("turnoverratio")),
-                    "change_pct": _safe_float(row.get("changepercent")),
-                })
+                result.append(
+                    {
+                        "code": str(row.get("code", "")),
+                        "name": str(row.get("name", "")),
+                        "price": _safe_float(row.get("trade")),
+                        "pe": _safe_float(row.get("per")),
+                        "pb": _safe_float(row.get("pb")),
+                        "market_cap": _safe_float(row.get("mktcap")),
+                        "turnover": _safe_float(row.get("turnoverratio")),
+                        "change_pct": _safe_float(row.get("changepercent")),
+                    }
+                )
             return result
         except Exception:
             return []
@@ -277,6 +292,7 @@ class AkShareClient:
 def _safe_float(val) -> float | None:
     """Convert a value to float, returning None if NaN, Inf, or not convertible."""
     import math
+
     if val is None:
         return None
     try:

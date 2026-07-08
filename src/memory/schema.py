@@ -1,4 +1,4 @@
-﻿"""SQLite table definitions for AI Investment Mentor.
+"""SQLite table definitions for AI Investment Mentor.
 
 All CREATE TABLE and CREATE INDEX statements as constants.
 Schema version: 2

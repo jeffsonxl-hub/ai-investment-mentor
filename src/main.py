@@ -6,8 +6,8 @@ Usage:
 """
 
 import argparse
-import sys
 import os
+import sys
 
 # Allow running from project root
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
@@ -31,14 +31,15 @@ def main():
         print(f"Configuration error: {e}")
         sys.exit(1)
 
-    print(f"AI Investment Mentor v0.1.0")
+    print("AI Investment Mentor v0.1.0")
     print(f"Config loaded: model={cfg.llm_model}, db={cfg.db_path}")
 
     if args.run_morning_report:
         import asyncio
+
+        from memory.repository import MemoryRepository
         from pipeline.pipeline import Pipeline, StepSeverity
         from pipeline.steps import build_candidates, score_candidates
-        from memory.repository import MemoryRepository
 
         memory = MemoryRepository(cfg.db_path)
 
@@ -67,18 +68,25 @@ def main():
         pipeline.add_step("market", market_agent, severity=StepSeverity.CRITICAL)
         pipeline.add_step("research_market", research_agent_market, severity=StepSeverity.WARNING)
         pipeline.add_step("watchlist", watchlist_agent, severity=StepSeverity.WARNING)
-        pipeline.add_step("build_candidates", build_candidates,
-                          depends_on=["market", "research_market", "watchlist"],
-                          severity=StepSeverity.CRITICAL)
-        pipeline.add_step("research_stocks", research_agent_stocks,
-                          depends_on=["build_candidates"],
-                          severity=StepSeverity.WARNING)
-        pipeline.add_step("score", score_candidates,
-                          depends_on=["build_candidates", "market", "watchlist"],
-                          severity=StepSeverity.CRITICAL)
-        pipeline.add_step("advisor", advisor_agent,
-                          depends_on=["score"],
-                          severity=StepSeverity.CRITICAL)
+        pipeline.add_step(
+            "build_candidates",
+            build_candidates,
+            depends_on=["market", "research_market", "watchlist"],
+            severity=StepSeverity.CRITICAL,
+        )
+        pipeline.add_step(
+            "research_stocks",
+            research_agent_stocks,
+            depends_on=["build_candidates"],
+            severity=StepSeverity.WARNING,
+        )
+        pipeline.add_step(
+            "score",
+            score_candidates,
+            depends_on=["build_candidates", "market", "watchlist"],
+            severity=StepSeverity.CRITICAL,
+        )
+        pipeline.add_step("advisor", advisor_agent, depends_on=["score"], severity=StepSeverity.CRITICAL)
 
         result = asyncio.run(pipeline.run())
         print(f"Pipeline: {result.status} in {result.total_duration_ms}ms")
@@ -92,5 +100,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

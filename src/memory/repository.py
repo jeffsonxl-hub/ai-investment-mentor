@@ -1,4 +1,4 @@
-﻿"""MemoryRepository -- deterministic SQLite persistence for all three memory types.
+"""MemoryRepository -- deterministic SQLite persistence for all three memory types.
 
 This is a Component, not an Agent. No LLM, no reasoning, no business logic.
 """
@@ -8,7 +8,7 @@ import sqlite3
 from datetime import datetime, timezone
 
 from .exceptions import MemoryRepositoryError
-from .schema import ALL_TABLES, ALL_INDEXES, SCHEMA_VERSION
+from .schema import ALL_INDEXES, ALL_TABLES, SCHEMA_VERSION
 
 
 class MemoryRepository:
@@ -36,9 +36,7 @@ class MemoryRepository:
                 self._conn.execute(stmt)
             for stmt in ALL_INDEXES:
                 self._conn.execute(stmt)
-            row = self._conn.execute(
-                "SELECT COUNT(*) FROM schema_version"
-            ).fetchone()
+            row = self._conn.execute("SELECT COUNT(*) FROM schema_version").fetchone()
             if row[0] == 0:
                 self._conn.execute(
                     "INSERT INTO schema_version (version) VALUES (?)",
@@ -83,8 +81,11 @@ class MemoryRepository:
         return dict(row) if row else None
 
     def add_to_watchlist(
-        self, stock_code: str, stock_name: str,
-        reason: str, priority: str = "medium",
+        self,
+        stock_code: str,
+        stock_name: str,
+        reason: str,
+        priority: str = "medium",
     ) -> None:
         existing = self._execute(
             "SELECT 1 FROM watchlist WHERE stock_code = ? AND active = 1",
@@ -129,20 +130,14 @@ class MemoryRepository:
     # -- Market Snapshots -----------------------------------------------------
 
     def get_latest_market_snapshot(self) -> dict | None:
-        row = self._execute(
-            "SELECT * FROM market_snapshots ORDER BY date DESC LIMIT 1"
-        ).fetchone()
+        row = self._execute("SELECT * FROM market_snapshots ORDER BY date DESC LIMIT 1").fetchone()
         return dict(row) if row else None
 
     def get_market_snapshot(self, date: str) -> dict | None:
-        row = self._execute(
-            "SELECT * FROM market_snapshots WHERE date = ?", (date,)
-        ).fetchone()
+        row = self._execute("SELECT * FROM market_snapshots WHERE date = ?", (date,)).fetchone()
         return dict(row) if row else None
 
-    def get_market_snapshot_range(
-        self, start_date: str, end_date: str
-    ) -> list[dict]:
+    def get_market_snapshot_range(self, start_date: str, end_date: str) -> list[dict]:
         rows = self._execute(
             "SELECT * FROM market_snapshots WHERE date >= ? AND date <= ? ORDER BY date ASC",
             (start_date, end_date),
@@ -231,8 +226,7 @@ class MemoryRepository:
 
     def get_rejected_stocks(self, days: int = 20) -> list[str]:
         rows = self._execute(
-            "SELECT stock_code FROM decisions "
-            "WHERE user_feedback = 'rejected' AND date >= ?",
+            "SELECT stock_code FROM decisions WHERE user_feedback = 'rejected' AND date >= ?",
             (self._now_date(offset_days=-days),),
         ).fetchall()
         return [r["stock_code"] for r in rows]
@@ -247,7 +241,10 @@ class MemoryRepository:
     # -- Data Source Status ---------------------------------------------------
 
     def save_source_status(
-        self, source: str, status: str, error_message: str | None = None,
+        self,
+        source: str,
+        status: str,
+        error_message: str | None = None,
     ) -> None:
         """Record a data source operational status for today."""
         self._execute(
@@ -271,6 +268,7 @@ class MemoryRepository:
     def _now_date(offset_days: int = 0) -> str:
         """Return today's date in ISO 8601 format (YYYY-MM-DD), optionally offset by N days."""
         from datetime import date, timedelta
+
         return (date.today() + timedelta(days=offset_days)).isoformat()
 
     @staticmethod
